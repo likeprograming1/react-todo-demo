@@ -25,6 +25,7 @@
   background-color: #fff9f9;
   place-items: center;
   position:fixed;
+  z-index: 1;
 }
 
 .header-container > ul{
@@ -49,13 +50,19 @@
   text-align: center;  
 }
 .main-article-container {
+  margin: 0 auto;
+  display: table;
+}
+.main-article-container > span {
+  display: table-cell;
+  vertical-align: middle;
+  width: 440px;
+  font-size: 18px;
+  font-weight: 400;
   text-align: center;
 }
-.main-article-container > h4 {
-  display: inline;
-  float: left;
-}
-.main-article-container > img {
-  float: left;
+.main-article-container > img { 
+  display: table-cell;
+  vertical-align: middle;
   width: 600px;
 }
