@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+/* Common */
+/* body {
+  height: 5000px;
+} */
+
+/* App.js */
+.app-container {
+  height: 67px; 
+}
+.main-container {
+  width: 100%;
+  height: 4923px;
+}
+
+/* Header.js */
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between ;
+  background-color: #fff9f9;
+  place-items: center;
+  position:fixed;
+}
+
+.header-container > ul{
+  margin: 0 auto;
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-container > ul > li{
+  padding: 16px;
+}
+
+.header-container > ul > li > a {
+  color: #333;
+  text-decoration: none;
+}
+/* Main.js */
+.main-header-container > h2{
+  margin: 40px 0px;
+  text-align: center;  
+}
+.main-article-container {
+  text-align: center;
+}
+.main-article-container > h4 {
+  display: inline;
+  float: left;
+}
+.main-article-container > img {
+  float: left;
+  width: 600px;
+}
