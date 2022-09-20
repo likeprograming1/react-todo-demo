@@ -1,6 +1,6 @@
 import {Header} from './component/Header';
 import {Main} from './component/Main';
-
+import {Footer} from './component/Footer';
 function App() {
   return (
     <>
@@ -10,6 +10,9 @@ function App() {
       <main className='main-container'>
         <Main />
       </main>
+      <footer className='footer-container'>
+        <Footer />
+      </footer>
     </>
   );
 }
