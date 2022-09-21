@@ -11,7 +11,7 @@ export const Header = () => {
           <li><a href='#'>맴버십</a></li>
         </ul>
         <ul className="login-info">
-          <li><a href='#'>로그인</a></li>
+          <li><a href='../Login.jsx'>로그인</a></li>
           <li><a href='#'>회원가입</a></li>
         </ul>
       </nav>
