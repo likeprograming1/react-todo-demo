@@ -1,7 +1,8 @@
 import logo from '../logo.png';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 const Stylenav = styled.header`
-  height: 67px;
   width: 100%;
   display: flex;
   background-color: #fff9f9;
@@ -36,7 +37,7 @@ export const Header = () => {
             <li><a href='#'>맴버십</a></li>
           </StyleUl>
           <StyleUl>
-            <li><a href='./Login'>로그인</a></li>
+            <li><Link to='/Login'>로그인</Link></li>
             <li><a href='#'>회원가입</a></li>
           </StyleUl>
         </Stylenav>
