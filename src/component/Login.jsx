@@ -1,18 +1,23 @@
 import styled from 'styled-components'
 import logo from '../logo.png';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 const MainCotainer = styled.div`
+  position: relative;
+  display: flex;
   width:100%;
   height: 100vh;
+  align-items: center;
+  justify-content: center;
 `
 const StyleMain = styled.div`
-  display: block;
-  margin: 0 auto;
+  position: absolute;
   width: 400px;
-  height: 300px;
-  border: 1px #333 solid;
+  height: 350px;  
+  border: 0.2 px #b5b5b5 solid;
   border-radius: 2px;
-  box-shadow: 2px 1px 2px 1px #333;
+  box-shadow: 10px 10px 10px 1px #81818166;
+
   .header {
     width: 100%;
     height: 40px;
@@ -24,29 +29,76 @@ const StyleMain = styled.div`
     margin: auto;
     padding: 5px;
   }
+  .login-container {
+    display: flex;
+    justify-content: center;
+  }
 `
 const StyleInput = styled.input`
   width: 200px;
-  height: 20px;
-  border: 0.5px #333 solid;
+  padding: 5px;
   border-radius: 5px;
 `
 const LoginContainer = styled.div`
   display: flex;
-  width: 100%;
-  height: 200px;
+  height: 70%;
   align-items: center;
   justify-content: center;
-  .Id-container{
-    width: 100%;
-    border: 1px red solid;
+  flex-direction: column;
+  .login-form > li {
+    padding: 10px;
+    list-style: none;
   }
-  h4{
-    display: inline;
+  #idinput {
+    box-shadow: 5px 5px 10px 1px #9c9c9c66;
+    margin-left: 20px;
   }
-  
+  #idinput:focus {
+    outline: none;
+    box-shadow: 5px 5px 10px 1px #9c9c9c66;
+    margin-left: 20px;
+  }
+  #pwinput {
+    box-shadow: 5px 5px 10px 1px #9c9c9c66;
+    margin-left: 12px;
+  }
+  #pwinput:focus {
+    outline: none;
+    box-shadow: 5px 5px 10px 1px #9c9c9c66;
+    margin-left: 12px;
+  }
+  .info-form {
+    display: flex;  
+    margin-left: -25px;
+  }
+  .info-form > li:hover {
+    color: #333;
+    cursor: pointer;
+  }
+  .info-form > li {
+    color: #747373;  
+    list-style: none;
+    font-size: 10px;
+    padding: 2px;
+    margin-right: 10px;
+  }
 `
+const LoginButton = styled.button`
+  border-radius: 5px;
+  color: #333;
+  background-color: #fff9f9;
+  width: 150px;
+  height: 40px;
+  :hover {
+    cursor: pointer;
+    background-color: #feecec;
+  }
+`
+const handleLogin = (e) => {
+  console.log(e.target);
+}
 export const Login = () => {
+  const [IsId, setIsId] = useState(null);
   return (
     <MainCotainer>
       <StyleMain>
@@ -54,15 +106,24 @@ export const Login = () => {
           <Link className='Link' to='/'><img src={logo} alt="로고" /></Link>
         </div>
         <LoginContainer>
-          <div className='Id-container'>
-            <h4>ID : </h4>
-            <StyleInput placeholder='아이디'/>
-          </div>
-          <div className='Pw-container'>
-            <h4>PW : </h4>
-            <StyleInput placeholder='비밀번호'/>
-          </div>
+          <ul className='login-form'>
+              <li>
+                <label htmlFor="idinput">ID</label>
+                <StyleInput placeholder='아이디' id="idinput" onChange={(event)=>{setIsId(event.target.value)}}/>
+              </li>
+              <li>
+                <label htmlFor="pwinput">PW</label>
+                <StyleInput type='password' placeholder='비밀번호' id='pwinput'/>
+              </li>
+            </ul>
+            <ul className='info-form'>
+              <li>아이디/비밀번호 찾기</li>
+              <li>회원가입</li>
+            </ul>
         </LoginContainer>
+        <div className='login-container'>
+          <LoginButton onClick={(event) => {handleLogin(event)}}>로그인</LoginButton>
+        </div>
       </StyleMain>
     </MainCotainer>
   )
