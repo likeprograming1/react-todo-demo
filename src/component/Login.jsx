@@ -94,11 +94,15 @@ const LoginButton = styled.button`
     background-color: #feecec;
   }
 `
-const handleLogin = (e) => {
-  console.log(e.target);
-}
 export const Login = () => {
+  const id = 'kimcoding';
+  const pw = "1234";
   const [IsId, setIsId] = useState(null);
+  const [IsPw, setIsPw] = useState(null);
+  const goToMain = () => {
+    console.log(this.props);
+    this.props.history.push('/')
+  }
   return (
     <MainCotainer>
       <StyleMain>
@@ -109,11 +113,20 @@ export const Login = () => {
           <ul className='login-form'>
               <li>
                 <label htmlFor="idinput">ID</label>
-                <StyleInput placeholder='아이디' id="idinput" onChange={(event)=>{setIsId(event.target.value)}}/>
+                <StyleInput 
+                placeholder='아이디' 
+                id="idinput" 
+                value={IsId || ''} 
+                onChange={(event)=>{setIsId(event.target.value)}}/>
               </li>
               <li>
                 <label htmlFor="pwinput">PW</label>
-                <StyleInput type='password' placeholder='비밀번호' id='pwinput'/>
+                <StyleInput 
+                type='password' 
+                placeholder='비밀번호' 
+                id='pwinput' 
+                value={IsPw || ''} 
+                onChange={(event)=>{setIsPw(event.target.value)}}/>
               </li>
             </ul>
             <ul className='info-form'>
@@ -122,7 +135,16 @@ export const Login = () => {
             </ul>
         </LoginContainer>
         <div className='login-container'>
-          <LoginButton onClick={(event) => {handleLogin(event)}}>로그인</LoginButton>
+          <LoginButton onClick={e => {
+            if(IsId === id){
+              if(IsPw === pw){
+                e.stopPropagation();
+                goToMain();
+              }
+            }else{
+              alert('아이디 혹은 비밀번호가 일치하지 않습니다.')
+            }
+          }}>로그인</LoginButton> 
         </div>
       </StyleMain>
     </MainCotainer>
