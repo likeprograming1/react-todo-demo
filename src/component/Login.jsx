@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 import logo from '../logo.png';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { useState } from 'react';
+import {useNavigate} from 'react-router';
+
 const MainCotainer = styled.div`
   position: relative;
   display: flex;
@@ -94,15 +96,31 @@ const LoginButton = styled.button`
     background-color: #feecec;
   }
 `
-export const Login = () => {
+export const Login = ({setValid}) => {
   const id = 'kimcoding';
   const pw = "1234";
   const [IsId, setIsId] = useState(null);
   const [IsPw, setIsPw] = useState(null);
-  const goToMain = () => {
-    console.log(this.props);
-    this.props.history.push('/')
+  const navigator = useNavigate();
+  const isIdvalue = (event)=> {
+    console.log(event.target.value)
+    setIsId(event.target.value);
   }
+  const isPwvalue = (event) => {
+    console.log(event.target.value)
+    setIsPw(event.target.value);
+  }
+  const goToMain = () => {
+    if(IsId === id){
+      if(IsPw === pw){
+        setValid(true);
+        navigator('/');
+      }
+    }else{
+      alert('아이디 혹은 비밀번호가 일치하지 않습니다.');
+    }
+  }
+
   return (
     <MainCotainer>
       <StyleMain>
@@ -117,7 +135,7 @@ export const Login = () => {
                 placeholder='아이디' 
                 id="idinput" 
                 value={IsId || ''} 
-                onChange={(event)=>{setIsId(event.target.value)}}/>
+                onChange={isIdvalue}/>
               </li>
               <li>
                 <label htmlFor="pwinput">PW</label>
@@ -126,7 +144,7 @@ export const Login = () => {
                 placeholder='비밀번호' 
                 id='pwinput' 
                 value={IsPw || ''} 
-                onChange={(event)=>{setIsPw(event.target.value)}}/>
+                onChange={isPwvalue}/>
               </li>
             </ul>
             <ul className='info-form'>
@@ -135,16 +153,7 @@ export const Login = () => {
             </ul>
         </LoginContainer>
         <div className='login-container'>
-          <LoginButton onClick={e => {
-            if(IsId === id){
-              if(IsPw === pw){
-                e.stopPropagation();
-                goToMain();
-              }
-            }else{
-              alert('아이디 혹은 비밀번호가 일치하지 않습니다.')
-            }
-          }}>로그인</LoginButton> 
+          <LoginButton onClick={goToMain}>로그인</LoginButton> 
         </div>
       </StyleMain>
     </MainCotainer>

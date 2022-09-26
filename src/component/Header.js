@@ -25,7 +25,12 @@ const StyleUl = styled.ul`
   }
 `
 
-export const Header = () => {
+export const Header = ({valid, setValid}) => {
+  const logout = ({valid, setValid}) => {
+    console.log(valid);
+    setValid(false);
+    navigator('/');
+  }
   return (
       <header className='app-container'>
         <Stylenav>
@@ -36,10 +41,18 @@ export const Header = () => {
             <li><a href='#'>다운로드</a></li>
             <li><a href='#'>맴버십</a></li>
           </StyleUl>
+          {console.log(valid)}
+          {valid ? 
           <StyleUl>
-            <li><Link to='/Login'>로그인</Link></li>
-            <li><a href='#'>회원가입</a></li>
+            <li><a href='#'>Todolist</a></li> 
+          <li><Link onClick={logout}>로그아웃</Link></li>
           </StyleUl>
+          :
+          <StyleUl>
+              <li><Link to='/Login'>로그인</Link></li>
+              <li><a href='#'>회원가입</a></li> 
+          </StyleUl>
+          }
         </Stylenav>
       </header>
   );
