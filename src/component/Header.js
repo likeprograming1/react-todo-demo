@@ -42,7 +42,8 @@ export const Header = ({valid, setValid}) => {
             <li><a href='#'>맴버십</a></li>
           </StyleUl>
           {console.log(valid)}
-          {valid ? 
+          {
+          valid ? 
           <StyleUl>
             <li><a href='#'>Todolist</a></li> 
           <li><Link onClick={logout}>로그아웃</Link></li>
@@ -50,7 +51,7 @@ export const Header = ({valid, setValid}) => {
           :
           <StyleUl>
               <li><Link to='/Login'>로그인</Link></li>
-              <li><a href='#'>회원가입</a></li> 
+              <li><Link to='/SignUp'>회원가입</Link></li> 
           </StyleUl>
           }
         </Stylenav>

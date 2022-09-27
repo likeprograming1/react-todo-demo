@@ -54,35 +54,43 @@ const LoginContainer = styled.div`
   #idinput {
     box-shadow: 5px 5px 10px 1px #9c9c9c66;
     margin-left: 20px;
-  }
-  #idinput:focus {
-    outline: none;
-    box-shadow: 5px 5px 10px 1px #9c9c9c66;
-    margin-left: 20px;
+    :focus {
+      outline: none;
+      box-shadow: 5px 5px 10px 1px #9c9c9c66;
+      margin-left: 20px;
+    }
   }
   #pwinput {
     box-shadow: 5px 5px 10px 1px #9c9c9c66;
     margin-left: 12px;
-  }
-  #pwinput:focus {
-    outline: none;
-    box-shadow: 5px 5px 10px 1px #9c9c9c66;
-    margin-left: 12px;
+    :focus  {
+      outline: none;
+      box-shadow: 5px 5px 10px 1px #9c9c9c66;
+      margin-left: 12px;
+    }
   }
   .info-form {
     display: flex;  
+    list-style: none;
     margin-left: -25px;
-  }
-  .info-form > li:hover {
-    color: #333;
-    cursor: pointer;
+    > li:hover {
+      color: #333;
+      cursor: pointer;
+    }
   }
   .info-form > li {
-    color: #747373;  
-    list-style: none;
+    color: #747373; 
     font-size: 10px;
     padding: 2px;
     margin-right: 10px;
+  }
+  .Linkcomponent {
+    color: #747373; 
+    text-decoration: none;
+    :hover {
+      color: #333;
+      cursor: pointer;
+    }
   }
 `
 const LoginButton = styled.button`
@@ -96,9 +104,7 @@ const LoginButton = styled.button`
     background-color: #feecec;
   }
 `
-export const Login = ({setValid}) => {
-  const id = 'kimcoding';
-  const pw = "1234";
+export const Login = ({setValid, id, pw}) => {
   const [IsId, setIsId] = useState(null);
   const [IsPw, setIsPw] = useState(null);
   const navigator = useNavigate();
@@ -111,11 +117,9 @@ export const Login = ({setValid}) => {
     setIsPw(event.target.value);
   }
   const goToMain = () => {
-    if(IsId === id){
-      if(IsPw === pw){
+    if(IsId === id  && IsPw === pw){
         setValid(true);
         navigator('/');
-      }
     }else{
       alert('아이디 혹은 비밀번호가 일치하지 않습니다.');
     }
@@ -149,7 +153,7 @@ export const Login = ({setValid}) => {
             </ul>
             <ul className='info-form'>
               <li>아이디/비밀번호 찾기</li>
-              <li>회원가입</li>
+              <li><Link to='/SignUp' className='Linkcomponent'>회원가입</Link></li>
             </ul>
         </LoginContainer>
         <div className='login-container'>
