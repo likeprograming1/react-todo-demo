@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import logo from '../logo.png';
 import { Link} from 'react-router-dom';
 import {useNavigate} from 'react-router';
+import { useState } from 'react';
 
 const SignUoMain = styled.main`
   width: 100%;
@@ -67,22 +68,24 @@ const SignButton = styled.button`
     color: #fff9f9;
   }
 `
-export const SignUp = ({setId, setPw}) => {
-  const id = null;
-  const pw = null;
-  const repw = null;
-  const email = null;
+export const SignUp = () => {
+  const [id, setId]= useState(null);
+  const [pw, setPw] = useState(null);
+  const [repw, setRepw] = useState(null);
+  const [email, setEmail] = useState(null);
   const emailtest = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
   const navigator = useNavigate();
 
   const Sinupcheck = () => {
     if(emailtest.test(email) && pw === repw && id.length > 5){
-      setId(id);
-      setPw(pw);
+      sessionStorage.setItem('IsId',JSON.stringify(id));
+      sessionStorage.setItem('IsPw',JSON.stringify(pw));
       navigator('/');
     }
   }
-
+  const idChange = (event) => {
+    setId(event.target.value)
+  }
   return (
     <SignUoMain>
       <SignUpbox>
@@ -92,19 +95,42 @@ export const SignUp = ({setId, setPw}) => {
         <ul>
           <li>
             <label>이메일</label>
-            <input type="email" value={email} name='email' placeholder='이메일'></input>
+            <input 
+              type="email" 
+              value={email||''} 
+              name='email' 
+              placeholder='이메일'
+              onChange={(event)=>setEmail(event.target.value)}
+            ></input>
           </li>
           <li>
             <label>아이디</label>
-            <input value={id} name='id' placeholder='아이디'></input>
+            <input 
+              value={id||''} 
+              name='id' 
+              placeholder='아이디'
+              onChange={(event)=>idChange(event)}
+            ></input>
           </li>
           <li>
             <label>비밀번호</label>
-            <input type="password" value={pw} name='pw' placeholder='비밀번호'></input>
+            <input 
+              type="password" 
+              value={pw||''} 
+              name='pw' 
+              placeholder='비밀번호'
+              onChange={(event)=>setPw(event.target.value)}
+            ></input>
           </li>
           <li>
             <label>비밀번호 확인</label>
-            <input type="password" value={repw} name='rpw' placeholder='비밀번호 재확인'></input>
+            <input 
+              type="password" 
+              value={repw||''} 
+              name='rpw' 
+              placeholder='비밀번호 재확인'
+              onChange={(event)=>setRepw(event.target.value)}
+            ></input>
           </li>
         </ul>
         <SignButton onClick={Sinupcheck}>회원가입</SignButton>

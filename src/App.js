@@ -7,20 +7,15 @@ import {SignUp} from './component/SignUp'
 
 function App() {
   const [valid, setValid] = useState(false);
-  const [Isid, setIsid] = useState('');
-  const [Ispw, setIspw] = useState('');
   const id = 'kimcoding';
   const pw = "1234";
-  useEffect(()=>{
-    localStorage.setItem('id', JSON.stringify(Isid));
-    localStorage.setItem('pw', JSON.stringify(Ispw));
-  },[<SignUp/>])
+  
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/Login' element={<Login setValid={setValid} id={id} pw={pw}/>}></Route>
         <Route path='/' element={<Homepage valid={valid} setValid={setValid}/>}></Route>
-        <Route path='/SignUp' element={<SignUp setId={setIsid} setPw={setIspw} />}></Route>
+        <Route path='/SignUp' element={<SignUp />}></Route>
       </Routes>
     </BrowserRouter>
   );
