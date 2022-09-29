@@ -108,8 +108,8 @@ export const Login = ({setValid, id, pw}) => {
   const [IsId, setIsId] = useState(null);
   const [IsPw, setIsPw] = useState(null);
   const navigator = useNavigate();
-  let getid = sessionStorage.getItem('IsId');
-  let getpw = sessionStorage.getItem('IsPw');
+  let getid = localStorage.getItem('id');
+  let getpw = localStorage.getItem('pw');
 
   const isIdvalue = (event)=> {
     console.log(event.target.value)
@@ -125,9 +125,7 @@ export const Login = ({setValid, id, pw}) => {
         navigator('/');
     }else{
       console.log(getid);
-      console.log(IsId);
       console.log(getpw);
-      console.log(IsPw);
       alert('아이디 혹은 비밀번호가 일치하지 않습니다.');
     }
   }

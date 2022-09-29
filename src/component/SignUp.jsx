@@ -68,18 +68,26 @@ const SignButton = styled.button`
     color: #fff9f9;
   }
 `
-export const SignUp = () => {
+export const SignUp = ({payload}) => {
   const [id, setId]= useState(null);
   const [pw, setPw] = useState(null);
   const [repw, setRepw] = useState(null);
   const [email, setEmail] = useState(null);
   const emailtest = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
   const navigator = useNavigate();
-
+  
   const Sinupcheck = () => {
     if(emailtest.test(email) && pw === repw && id.length > 5){
-      sessionStorage.setItem('IsId',JSON.stringify(id));
-      sessionStorage.setItem('IsPw',JSON.stringify(pw));
+      payload = {
+        'id':id,
+        'pw':pw,
+        'email':email
+      }
+      localStorage.setItem('id', JSON.stringify(id));
+      localStorage.setItem('pw',JSON.stringify(pw));
+      // localStorage.setItem('payload',JSON.stringify(payload)); 
+      // console.log("payload",payload);
+      // console.log('payload', payload.id);
       navigator('/');
     }
   }

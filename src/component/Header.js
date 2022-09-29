@@ -45,7 +45,7 @@ export const Header = ({valid, setValid}) => {
           {
           valid ? 
           <StyleUl>
-            <li><a href='#'>Todolist</a></li> 
+            <li><Link to='/TodoList'>Todolist</Link></li> 
           <li><Link onClick={logout}>로그아웃</Link></li>
           </StyleUl>
           :

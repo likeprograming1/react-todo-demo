@@ -37,3 +37,8 @@
   vertical-align: middle;
   width: 600px;
 }
+/* Todolist.jsx */
+.react-calendar {
+  width: 100%;
+}
+
