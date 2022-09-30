@@ -1,0 +1,43 @@
+button {
+  cursor: pointer;
+}
+.container {
+  margin: 0;
+  padding: 0;
+  width : 100%;
+  height: 100vh;
+  border: 1px red solid;
+}
+.title {
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border: 1px blue solid;
+}
+.title > .pagination {
+  margin: 20px;
+  font-size: 16px;
+}
+.title > h3{
+  font-size: 16px;
+  display: inline;
+}
+.pagination {
+  display: inline;
+}
+.week, .date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+.container .week .sunday,
+.container .date .sunday {
+  color: red;
+}
+
+.container .week .saturday,
+.container .date .saturday {
+  color: blue;
+}
